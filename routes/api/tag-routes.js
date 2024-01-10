@@ -12,10 +12,11 @@ router.get('/', async (req, res) => {
     });
     res.status(200).json(tags);
   } catch (error) {
-    console.error(error);
+ 
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
 
 router.get('/:id', async (req, res) => {
   // find a single tag by its `id`
@@ -32,7 +33,7 @@ router.get('/:id', async (req, res) => {
 
     res.status(200).json(tag);
   } catch (error) {
-    console.error(error);
+
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
@@ -43,7 +44,7 @@ router.post('/', async (req, res) => {
     const newTag = await Tag.create(req.body);
     res.status(201).json(newTag);
   } catch (error) {
-    console.error(error);
+
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
@@ -62,7 +63,7 @@ router.put('/:id', async (req, res) => {
 
     res.status(200).json({ message: 'Tag updated successfully' });
   } catch (error) {
-    console.error(error);
+ 
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
@@ -81,7 +82,7 @@ router.delete('/:id', async (req, res) => {
 
     res.status(200).json({ message: 'Tag deleted successfully' });
   } catch (error) {
-    console.error(error);
+
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
