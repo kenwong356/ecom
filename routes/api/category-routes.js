@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     });
     res.status(200).json(categories);
   } catch (err) {
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json(err);
   }
 });
 
@@ -31,20 +31,27 @@ router.get('/:id', async (req, res) => {
 
   res.status(200).json(category);
 } catch (err) {
-  res.status(500).json({ error: 'Internal Server Error' });
+  res.status(500).json(err);
 }
 
 });
 
 router.post('/', async (req, res) => {
-  // create a new category
   try {
-  const newCategory = await Category.create(req.body);
-  res.status(201).json(newCategory);
-} catch (err) {
-  res.status(500).json({ error: 'Internal Server Error' });
-}
+    if (!req.body.category_name) {
+      return res.status(400).json({ error: 'Category name is required' });
+    }
+
+    const newCategory = await Category.create({
+      category_name: req.body.category_name,
+    });
+
+    res.status(201).json(newCategory);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
+
 
 router.put('/:id', async (req, res) => {
   // update a category by its `id` value

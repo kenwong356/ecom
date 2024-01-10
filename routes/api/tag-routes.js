@@ -41,6 +41,10 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   // create a new tag
   try {
+    if (!req.body.tag_name) {
+      res.status(400).json({ error: 'Tag name is required' });
+      return;
+    }
     const newTag = await Tag.create(req.body);
     res.status(201).json(newTag);
   } catch (error) {
@@ -52,22 +56,21 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   // update a tag's name by its `id` value
   try {
-    const updatedTag = await Tag.update(req.body, {
+    const [updatedRows] = await Tag.update(req.body, {
       where: { id: req.params.id },
     });
 
-    if (updatedTag === 0) {
+    if (updatedRows === 0) {
       res.status(404).json({ error: 'Tag not found' });
       return;
     }
 
-    res.status(200).json({ message: 'Tag updated successfully' });
+    const updatedTag = await Tag.findByPk(req.params.id);
+    res.status(200).json({ message: 'Tag updated successfully', updatedTag });
   } catch (error) {
- 
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
 router.delete('/:id', async (req, res) => {
   // delete on tag by its `id` value
   try {
