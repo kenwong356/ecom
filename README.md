@@ -6,9 +6,9 @@ This homework assigment is to build the back end for an e-commerce site that use
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [License](#license)
 - [Contributing](#contributing)
 - [Questions](#questions)
+- [Video](#video)
 
 
 ## Installation
@@ -17,7 +17,8 @@ The site may be used via Node.js, starting & seeding the database, starting the 
 ## Usage
 The video below demonstrates the functionality and usage of the e-commerce backend.
 
-Video: (___)
+## Video 
+[Video](https://drive.google.com/file/d/1N-AZlYUxD7Tcjgzx5rUpmjbzpeUu49uy/view?usp=sharing)
 
 ## Contributing
 Contact the developer below via e-mail or GitHub for instructions on contributing to this project.
